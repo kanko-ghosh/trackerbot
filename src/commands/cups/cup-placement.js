@@ -58,8 +58,8 @@ module.exports = {
             ]
         }
     ],    
-    // permissionsRequired: [PermissionFlagsBits.Administrator],
-    // botPermissions: [PermissionFlagsBits.Administrator],
+    permissionsRequired: [PermissionFlagsBits.Administrator],
+    botPermissions: [PermissionFlagsBits.Administrator],
     callback: async (client, interaction) => {
 
         await interaction.deferReply();

@@ -107,6 +107,6 @@ module.exports = {
             }
         }
 
-        await interaction.followUp({content: "Saved player status", ephemeral: true})
+        await interaction.reply({content: "Saved player status", ephemeral: true})
     },
 };

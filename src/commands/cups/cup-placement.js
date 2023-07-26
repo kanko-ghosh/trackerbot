@@ -107,6 +107,6 @@ module.exports = {
             }
         }
 
-        await interaction.reply({content: "Saved player status", ephemeral: true})
+        await interaction.reply( `Saved player status\n${player1.tag} | ${player2.tag} | ${player3.tag}\nCup: ${cup}\nPosition: ${position}` )
     },
 };

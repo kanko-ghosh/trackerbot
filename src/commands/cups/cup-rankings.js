@@ -1,5 +1,6 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const { Player } = require("../../Models/players");
+const { ChannelMessage } = require("../../Models/message-channel-mapping");
 
 tours = [
     "asia",
@@ -22,18 +23,9 @@ module.exports = {
     //testOnly: true,
     // options: Object[],
     // deleted: Boolean,
-    options: [
-        {
-            name: 'all_time',
-            description: 'true, if data for all time is required, else false',
-            required: true,
-            type: ApplicationCommandOptionType.Boolean,
-        },
-    ],
+
     callback: async (client, interaction) => {
         await interaction.deferReply();
-
-        const isAllTime = interaction.options.getBoolean('all_time')
 
         const ps = await Player.find();
 
@@ -50,9 +42,9 @@ module.exports = {
 
                 val = p[tours[i]]
                 if (Array.isArray(val) && val.length === 2) {
-                    one += val[(isAllTime ? 0 : 1)][0]
-                    two += val[(isAllTime ? 0 : 1)][1]
-                    three += val[(isAllTime ? 0 : 1)][2]
+                    one += val[1][0]
+                    two += val[1][1]
+                    three += val[1][2]
                 }
                 if (one+two+three != 0) res.push([p.id, one, two, three])
 
@@ -82,12 +74,38 @@ module.exports = {
 
         }
 
-        if (embedList.length == 0){
-		    await interaction.editReply('Nothing!');
-            return;
+
+        const chanmsg = await ChannelMessage.where({ messagetype: "cup-rankings" }).findOne()
+
+        var channel = await interaction.guild.channels.fetch(chanmsg.channelid)
+        let message
+        try {
+            message = await channel.messages.fetch(chanmsg.messageid)
+        } catch {
+            message = null
         }
 
-        await interaction.editReply({embeds: embedList})
+        if (embedList.length == 0){
+            if (chanmsg.messageid == null || message == null) {
+                var newmsg = await channel.send("Nothing")
+                chanmsg.messageid = newmsg.id
+                await chanmsg.save()
+            } else {
+                await message.edit("Nothing")
+            }
+        } else {
+            if (chanmsg.messageid == null || message == null) {
+                var newmsg = await channel.send({content: "->", embeds: embedList})
+                chanmsg.messageid = newmsg.id
+                await chanmsg.save()
+            } else {
+                await message.edit({content: "->", embeds: embedList})
+            }
+        }
+
+
+        // await interaction.reply({embeds: [embed]})
+        await interaction.editReply(`Update in <#${chanmsg.channelid}>`)
 
         
     }

@@ -1,0 +1,48 @@
+const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink, EmbedBuilder } = require("discord.js");
+const { Player } = require("../../Models/players");
+
+
+module.exports = {
+    name: 'hall-of-fame',
+    description: 'Winners all time',
+    // devOnly: Boolean,
+    //testOnly: true,
+    // options: Object[],
+    // deleted: Boolean,
+    callback: async (client, interaction) => {
+
+        const ps = await Player.find();
+        res = []
+        for (var i = 0; i < ps.length; i++) {
+            score = 0
+            p = ps[i]
+            tours = Object.keys(p._doc)
+            for (var j = 0; j < tours.length; j++) {
+                val = p[tours[j]]
+                if (Array.isArray(val) && val.length === 2) {
+                    score += val[0][0]
+                }
+            }
+            if (score != 0) res.push([p.id, score, p.isArchived])
+        }
+        res.sort((a, b) => b[1] - a[1]);
+
+
+        to_print = ""
+        for (var i = 0; i < res.length; i++) {
+            to_print += `${res[i][1]}×:trophy:${(res[i][2]?"  *":"\t")}\t<@${res[i][0]}>\n`
+        }
+        if (to_print == ""){
+            await interaction.reply("Nothing!!")
+            return;
+        }
+
+        const embed = new EmbedBuilder()
+            .setTitle('HALL OF FAME')
+            .addFields(
+                { name: 'Winners all time', value: to_print },
+            )
+
+        await interaction.reply({embeds: [embed]})
+    }
+};

@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink, EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const { Player } = require("../../Models/players");
 
 tours = [
@@ -8,8 +8,8 @@ tours = [
     "silver_india",
     "silver_eu_2",
     "gold",
-    "silver_us",
     "america",
+    "silver_us",
     "global",
     "platinum",
     "diamond",
@@ -37,8 +37,9 @@ module.exports = {
 
         const ps = await Player.find();
 
-        to_print = ""
+        const embedList = []
         for (i = 0; i < tours.length; i++){
+            to_print = ""
             res = []
             for (var j = 0; j < ps.length; j++) {
                 one = 0
@@ -71,25 +72,22 @@ module.exports = {
                 temp += `${res[k][1]}x:trophy:  ${res[k][2]}x:second_place:  ${res[k][3]}x:third_place:  \t\t<@${res[k][0]}>\n`
             }
             if (temp != ""){
-                to_print += tours[i] + "\n";
                 to_print += "---------------------\n";
                 to_print += temp + "\n"
+                const embed = new EmbedBuilder()
+                .setTitle(tours[i])
+                .setDescription(to_print)
+                embedList.push(embed)
             }
 
         }
 
-        if (to_print == ""){
+        if (embedList.length == 0){
 		    await interaction.editReply('Nothing!');
             return;
         }
 
-        const embed = new EmbedBuilder()
-            .setTitle('CUP RANKING')
-            .addFields(
-                { name: (isAllTime ? 'ALL TIME CUP WON (Active)' : 'CURRENT SEASON CUP WON (ACTIVE)'), value: to_print },
-            )
-
-        await interaction.reply({embeds: [embed]})
+        await interaction.editReply({embeds: embedList})
 
         
     }

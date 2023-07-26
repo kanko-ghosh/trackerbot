@@ -57,9 +57,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('SCORE SHEET')
-            .addFields(
-                { name: 'Score calculated with the TP gained by winners', value: to_print },
-            )
+            .setDescription(to_print)
 
         await interaction.reply({embeds: [embed]})
 

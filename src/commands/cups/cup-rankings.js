@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink } = require("discord.js");
+const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink, EmbedBuilder } = require("discord.js");
 const { Player } = require("../../Models/players");
 
 tours = [

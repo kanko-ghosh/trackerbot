@@ -54,6 +54,14 @@ module.exports = {
             await interaction.reply("Nothing!!")
             return;
         }
-        await interaction.reply(to_print)
+
+        const embed = new EmbedBuilder()
+            .setTitle('SCORE SHEET')
+            .addFields(
+                { name: 'Score calculated with the TP gained by winners', value: to_print },
+            )
+
+        await interaction.reply({embeds: [embed]})
+
     }
 };

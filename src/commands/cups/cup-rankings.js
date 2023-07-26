@@ -82,7 +82,15 @@ module.exports = {
 		    await interaction.editReply('Nothing!');
             return;
         }
-		await interaction.editReply(to_print);
+
+        const embed = new EmbedBuilder()
+            .setTitle('CUP RANKING')
+            .addFields(
+                { name: (isAllTime ? 'ALL TIME CUP WON (Active)' : 'CURRENT SEASON CUP WON (ACTIVE)'), value: to_print },
+            )
+
+        await interaction.reply({embeds: [embed]})
+
         
     }
 };

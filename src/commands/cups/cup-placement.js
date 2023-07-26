@@ -58,8 +58,8 @@ module.exports = {
             ]
         }
     ],    
-    permissionsRequired: [PermissionFlagsBits.Administrator],
-    botPermissions: [PermissionFlagsBits.Administrator],
+    // permissionsRequired: [PermissionFlagsBits.Administrator],
+    // botPermissions: [PermissionFlagsBits.Administrator],
     callback: async (client, interaction) => {
         const player1 = interaction.options.getUser('player1')
         const player2 = interaction.options.getUser('player2')
@@ -78,7 +78,7 @@ module.exports = {
             return;
         }
         
-        await interaction.reply(`You entered players: <@${player1.tag}>,<@${player2.tag}> and <@${player3.tag}>\nCup: ${cup}\nPosition: ${position}`)
+        // await interaction.reply(`You entered players: <@${player1.tag}>,<@${player2.tag}> and <@${player3.tag}>\nCup: ${cup}\nPosition: ${position}`)
 
         //save player instance
 
@@ -96,20 +96,17 @@ module.exports = {
                 await player.save()
             } else {
                 var v = p[cup]
-                console.log(p)
                 v[0][position-1] += 1
                 v[1][position-1] += 1
 
                 p.isArchived = false
                 p[cup] = 0
-                console.log(p)
                 await p.save()
                 p[cup] = v
-                console.log(p)
                 await p.save()
             }
         }
 
-        await interaction.followUp("Saved player status")
+        await interaction.followUp({content: "Saved player status", ephemeral: true})
     },
 };

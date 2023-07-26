@@ -17,17 +17,19 @@ module.exports = {
         },
     ],
     callback: async (client, interaction) => {
+        await interaction.deferReply();
+        
         const player = interaction.options.getUser('player')
         
         if (player.bot) {
-            await interaction.reply("Bots cant play lmao")
+            await interaction.editReply("Bots cant play lmao")
             return;
         }
 
         //check player instance
         const p = await Player.where({ id: player.id }).findOne();
         if (p == null){
-            await interaction.reply("Player isnt availlable in my database")
+            await interaction.editReply("Player isnt availlable in my database")
             return
         } else {
             res = "```"
@@ -43,7 +45,7 @@ module.exports = {
             }
             res += "```\n"
             res += `Current Player: ${p.isArchived ? "NO" : "YES"}`
-            await interaction.reply(res)
+            await interaction.editReply(res)
         }
     }
 };

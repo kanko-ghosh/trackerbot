@@ -13,6 +13,8 @@ module.exports = {
     botPermissions: [PermissionFlagsBits.Administrator],
     callback: async (client, interaction) => {
 
+        await interaction.deferReply();
+
         const ps = await Player.find();
         for (var i = 0; i < ps.length; i++) {
             p = ps[i]
@@ -26,6 +28,6 @@ module.exports = {
             await p.save()
         }
 
-        await interaction.reply("season reset done")
+        await interaction.editReply("season reset done")
     }
 };

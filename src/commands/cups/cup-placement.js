@@ -61,6 +61,9 @@ module.exports = {
     // permissionsRequired: [PermissionFlagsBits.Administrator],
     // botPermissions: [PermissionFlagsBits.Administrator],
     callback: async (client, interaction) => {
+
+        await interaction.deferReply();
+
         const player1 = interaction.options.getUser('player1')
         const player2 = interaction.options.getUser('player2')
         const player3 = interaction.options.getUser('player3')
@@ -70,11 +73,11 @@ module.exports = {
 
 
         if (player1.bot || player2.bot || player3.bot) {
-            await interaction.reply("Bots cant win lmao")
+            await interaction.editReply("Bots cant win lmao")
             return;
         }
         if (player1.id === player2.id || player2.id === player3.id || player1.id === player3.id) {
-            await interaction.reply("same user mentioned")
+            await interaction.editReply("same user mentioned")
             return;
         }
         
@@ -107,6 +110,6 @@ module.exports = {
             }
         }
 
-        await interaction.reply( `Saved player status\n${player1.tag} | ${player2.tag} | ${player3.tag}\nCup: ${cup}\nPosition: ${position}` )
+        await interaction.editReply( `Saved player status\n${player1.tag} | ${player2.tag} | ${player3.tag}\nCup: ${cup}\nPosition: ${position}` )
     },
 };

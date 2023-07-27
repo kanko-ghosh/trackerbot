@@ -1,5 +1,6 @@
 const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink, PermissionFlagsBits } = require("discord.js");
 const { Player } = require("../../Models/players");
+const { ChannelMessage } = require("../../Models/message-channel-mapping");
 
 
 module.exports = {
@@ -28,6 +29,7 @@ module.exports = {
             await p.save()
         }
 
+        await ChannelMessage.updateMany({ messagetype: { $ne: 'hall-of-fame' } }, { $unset: { messageid: 1 } })
         await interaction.editReply("season reset done")
     }
 };

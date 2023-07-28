@@ -1,6 +1,7 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const { Player } = require("../../Models/players");
 const { ChannelMessage } = require("../../Models/message-channel-mapping");
+const { Season } = require("../../Models/season");
 
 tours = [
     "asia",
@@ -27,6 +28,8 @@ module.exports = {
     callback: async (client, interaction) => {
         await interaction.deferReply();
 
+        const season = await Season.findOne();
+    
         const ps = await Player.find();
 
         const embedList = []
@@ -87,19 +90,19 @@ module.exports = {
 
         if (embedList.length == 0){
             if (chanmsg.messageid == null || message == null) {
-                var newmsg = await channel.send("Nothing")
+                var newmsg = await channel.send(`# Season ${season.season}\nNothing yet`)
                 chanmsg.messageid = newmsg.id
                 await chanmsg.save()
             } else {
-                await message.edit("Nothing")
+                await message.edit(`# Season ${season.season}\nNothing yet`)
             }
         } else {
             if (chanmsg.messageid == null || message == null) {
-                var newmsg = await channel.send({content: "->", embeds: embedList})
+                var newmsg = await channel.send({content: `# Season ${season.season}`, embeds: embedList})
                 chanmsg.messageid = newmsg.id
                 await chanmsg.save()
             } else {
-                await message.edit({content: "->", embeds: embedList})
+                await message.edit({content: `# Season ${season.season}`, embeds: embedList})
             }
         }
 

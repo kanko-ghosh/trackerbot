@@ -39,7 +39,7 @@ module.exports = {
         if (to_print == ""){
             to_print = "Nothing"
         } else {
-            to_print = "HALL OF FAME\n**Individual honors of UNT members** since reopening (from 06/29/2023)\n-------------------------\n\n" + to_print
+            to_print = "# HALL OF FAME\n**Individual honors of UNT members** since reopening (from 06/29/2023)\n-------------------------\n\n" + to_print
         }
 
         const chanmsg = await ChannelMessage.where({ messagetype: "hall-of-fame" }).findOne()

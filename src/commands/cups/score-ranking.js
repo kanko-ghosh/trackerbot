@@ -1,6 +1,7 @@
 const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink, EmbedBuilder } = require("discord.js");
 const { Player } = require("../../Models/players");
 const { ChannelMessage } = require("../../Models/message-channel-mapping");
+const { Season } = require("../../Models/season");
 
 points = {
     "asia": [75, 50, 25],
@@ -28,6 +29,8 @@ module.exports = {
         await interaction.deferReply();
 
         const ps = await Player.find();
+        const season = await Season.findOne();
+
         res = []
         for (var i = 0; i < ps.length; i++) {
             score = 0
@@ -55,8 +58,9 @@ module.exports = {
                 to_print += "--------------- TOP 30 ----------------\n"
         }
         if (to_print == ""){
-            to_print = "Nothing!!"
+            to_print = `Nothing!!`
         }
+        to_print = `# Season ${season.season}\n---------------------\n\n` + to_print
 
         const chanmsg = await ChannelMessage.where({ messagetype: "score-rankings" }).findOne()
 

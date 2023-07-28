@@ -1,6 +1,7 @@
 const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle, MessageCollector, messageLink, PermissionFlagsBits } = require("discord.js");
 const { Player } = require("../../Models/players");
 const { ChannelMessage } = require("../../Models/message-channel-mapping");
+const { Season } = require("../../Models/season");
 
 
 module.exports = {
@@ -29,7 +30,12 @@ module.exports = {
             await p.save()
         }
 
+        const s = await Season.findOne();
+        s.season += 1
+        await s.save()
+
+
         await ChannelMessage.updateMany({ messagetype: { $ne: 'hall-of-fame' } }, { $unset: { messageid: 1 } })
-        await interaction.editReply("season reset done")
+        await interaction.editReply(`season reset done, new season: ${s.season}`)
     }
 };

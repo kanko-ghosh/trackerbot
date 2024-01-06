@@ -20,7 +20,10 @@ module.exports = {
         await interaction.deferReply();
         
         const player = interaction.options.getUser('player')
-        
+        if (player.id == '1065200490293497958'){
+          await interaction.editReply("Fuck off, i dont show <@1065200490293497958>\'s status'")
+          return;
+        }
         if (player.bot) {
             await interaction.editReply("Bots cant play lmao")
             return;
@@ -33,6 +36,7 @@ module.exports = {
             return
         } else {
             res = "```"
+
             res += `${player.tag}${' '.repeat(20-player.tag.length)}| 1st| 2nd| 3rd\n`
             res += "-----------------------------------\n"
             

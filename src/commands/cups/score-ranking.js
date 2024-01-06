@@ -4,8 +4,8 @@ const { ChannelMessage } = require("../../Models/message-channel-mapping");
 const { Season } = require("../../Models/season");
 
 points = {
-    "asia": [75, 50, 25],
-    "silver_singapore": [125, 75, 50],
+    "asia": [200, 100, 50],
+    "silver_singapore": [140, 70, 35],
     "silver_eu": [125, 75, 50],
     "silver_india": [125, 75, 50],
     "silver_eu_2": [125, 75, 50],
@@ -23,7 +23,6 @@ module.exports = {
     // devOnly: Boolean,
     //testOnly: true,
     // options: Object[],
-    // deleted: Boolean,
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
@@ -53,7 +52,7 @@ module.exports = {
 
         to_print = ""
         for (var i = 0; i < res.length; i++) {
-            to_print += `${res[i][1]} <:tp:1133501968116097076>\t\t<@${res[i][0]}>\n`
+            to_print += `${res[i][1]} <:TP:1147077791192457286>\t\t<@${res[i][0]}>\n`
             if (i == 29)
                 to_print += "--------------- TOP 30 ----------------\n"
         }

@@ -21,7 +21,7 @@ module.exports = {
         
         const player = interaction.options.getUser('player')
         if (player.id == '1065200490293497958'){
-          await interaction.editReply("Fuck off, i dont show <@1065200490293497958>\'s status'")
+          await interaction.editReply("F off, i dont show <@1065200490293497958>\'s status'")
           return;
         }
         if (player.bot) {

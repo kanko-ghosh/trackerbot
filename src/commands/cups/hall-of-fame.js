@@ -32,6 +32,7 @@ module.exports = {
 
         to_print = ""
         for (var i = 0; i < res.length; i++) {
+            if (res[i][2] && res[i][1] < 5) continue
             to_print += `${res[i][1]}×:trophy:${(res[i][2]?"  *":"\t")}\t<@${res[i][0]}>\n`
             if (i == 9)
                 to_print += "--------------- TOP 10 ----------------\n"

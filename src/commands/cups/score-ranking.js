@@ -5,16 +5,16 @@ const { Season } = require("../../Models/season");
 
 points = {
     "asia": [200, 100, 50],
-    "silver_singapore": [140, 70, 35],
-    "silver_eu": [125, 75, 50],
-    "silver_india": [125, 75, 50],
-    "silver_eu_2": [125, 75, 50],
-    "gold": [500, 250, 125],
-    "silver_us": [125, 75, 50],
-    "america": [75, 50, 25],
-    "global": [500, 250, 125],
-    "platinum": [1500, 750, 375],
-    "diamond": [3500, 1750, 875],
+    "silver_singapore": [120, 60, 30],
+    "silver_eu": [120, 60, 30],
+    "silver_india": [120, 60, 30],
+    "silver_eu_2": [120, 60, 30],
+    "gold": [400, 200, 100],
+    "silver_us": [120, 60, 30],
+    "america": [200, 100, 50],
+    "global": [200, 100, 50],
+    "platinum": [1200, 600, 300],
+    "diamond": [2000, 1000, 500],
 }
 
 module.exports = {

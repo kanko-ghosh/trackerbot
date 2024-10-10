@@ -37,6 +37,10 @@ const player = new mongoose.Schema({
         type: Array,
         default: [[0, 0, 0], [0, 0, 0]]
     }, 
+    silver_us_2 : {
+        type: Array,
+        default: [[0, 0, 0], [0, 0, 0]]
+    }, 
     america : {
         type: Array,
         default: [[0, 0, 0], [0, 0, 0]]

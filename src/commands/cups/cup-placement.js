@@ -51,6 +51,7 @@ module.exports = {
                 { name: "silver_eu_2", value: "silver_eu_2" },
                 { name: "gold", value: "gold" },
                 { name: "silver_us", value: "silver_us" },
+                { name: "silver_us_2", value: "silver_us_2" },
                 { name: "america", value: "america" },
                 { name: "global", value: "global" },
                 { name: "platinum", value: "platinum" },
@@ -84,7 +85,7 @@ module.exports = {
         // await interaction.reply(`You entered players: <@${player1.tag}>,<@${player2.tag}> and <@${player3.tag}>\nCup: ${cup}\nPosition: ${position}`)
 
         //save player instance
-
+    
         players = [player1.id, player2.id, player3.id]
         for (i = 0; i < 3; i++){
             const p = await Player.where({ id: players[i] }).findOne();

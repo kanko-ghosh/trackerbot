@@ -12,6 +12,7 @@ tours = [
     "gold",
     "america",
     "silver_us",
+    "silver_us_2",
     "global",
     "platinum",
     "diamond",

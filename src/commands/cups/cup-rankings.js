@@ -18,6 +18,10 @@ tours = [
     "diamond",
 ]
 
+const trophy = "\u{1F947}";
+const silverMedal = "\u{1F948}";
+const bronzeMedal = "\u{1F949}"; 
+
 module.exports = {
     name: 'cup-rankings',
     description: 'Top 3 positions are shown!',
@@ -65,7 +69,7 @@ module.exports = {
 
             temp = ""
             for (var k = 0; k < res.length; k++) {
-                temp += `${res[k][1]}x`🏆`  ${res[k][2]}x`🥈`  ${res[k][3]}x`🥉`  \t\t<@${res[k][0]}>\n`
+                temp += `${res[k][1]}x\`${trophy}\`  ${res[k][2]}x\`${silverMedal}\`  ${res[k][3]}x\`${bronzeMedal}\`  \t\t<@${res[k][0]}>\n`
             }
             if (temp != ""){
                 to_print += "---------------------\n";

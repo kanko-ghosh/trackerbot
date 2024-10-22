@@ -65,7 +65,7 @@ module.exports = {
 
             temp = ""
             for (var k = 0; k < res.length; k++) {
-                temp += `${res[k][1]}x:trophy:  ${res[k][2]}x:second_place:  ${res[k][3]}x:third_place:  \t\t<@${res[k][0]}>\n`
+                temp += `${res[k][1]}x`🏆`  ${res[k][2]}x`🥈`  ${res[k][3]}x`🥉`  \t\t<@${res[k][0]}>\n`
             }
             if (temp != ""){
                 to_print += "---------------------\n";

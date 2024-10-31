@@ -52,6 +52,16 @@ module.exports = {
             required: true,
             type: ApplicationCommandOptionType.Number,
         },
+        {
+            name: 'current_season',
+            description: 'yes, if current season, else no',
+            required: true,
+            type: ApplicationCommandOptionType.String,
+            choices: [
+                { name: "yes", value: "yes" },
+                { name: "no", value: "no"},
+            ]
+        },
     ],    
     permissionsRequired: [PermissionFlagsBits.Administrator],
     botPermissions: [PermissionFlagsBits.Administrator],
@@ -81,6 +91,12 @@ module.exports = {
                 v[1][1] += second
                 v[1][2] += third
 
+                if (interaction.options.getString('current_season') == "yes"){
+                    v[0][0] += first
+                    v[0][1] += second
+                    v[0][2] += third
+                }
+            
                 p[cup] = 0
                 await p.save()
                 p[cup] = v

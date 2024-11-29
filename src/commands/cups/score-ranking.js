@@ -7,7 +7,7 @@ points = {
     "asia": [200, 100, 50],
     "silver_singapore": [120, 60, 30],
     "silver_eu": [120, 60, 30],
-    "silver_singapore_2": [100, 50, 0],
+    "silver_india": [100, 50, 0],
     "silver_eu_2": [140, 70, 30],
     "gold": [400, 200, 100],
     "silver_us": [120, 60, 30],

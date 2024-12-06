@@ -2,6 +2,7 @@ const { ApplicationCommandOptionType, ModalBuilder, TextInputBuilder, ActionRowB
 const { Player } = require("../../Models/players");
 const { ChannelMessage } = require("../../Models/message-channel-mapping");
 
+const trophy = "\u{1F3C6}";
 
 module.exports = {
     name: 'hall-of-fame',
@@ -33,7 +34,7 @@ module.exports = {
         to_print = ""
         for (var i = 0; i < res.length; i++) {
             if (res[i][2] && res[i][1] < 5) continue
-            to_print += `${res[i][1]}×:trophy:${(res[i][2]?"  *":"\t")}\t<@${res[i][0]}>\n`
+            to_print += `${res[i][1]}×${trophy} ${(res[i][2]?"  *":"\t")}\t<@${res[i][0]}>\n`
             if (i == 9)
                 to_print += "--------------- TOP 10 ----------------\n"
         }

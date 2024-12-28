@@ -4,11 +4,11 @@ const { ChannelMessage } = require("../../Models/message-channel-mapping");
 const { Season } = require("../../Models/season");
 
 points = {
-    "asia": [200, 100, 50],
-    "silver_singapore": [120, 60, 30],
+    "asia": [180, 90, 40],
+    "silver_singapore": [100, 50, 0],
     "silver_eu": [120, 60, 30],
     "silver_india": [100, 50, 0],
-    "silver_eu_2": [140, 70, 30],
+    "silver_eu_2": [160, 80, 40],
     "gold": [400, 200, 100],
     "silver_us": [120, 60, 30],
     "silver_us_2": [100, 50, 0],

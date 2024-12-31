@@ -33,6 +33,11 @@ module.exports = {
     callback: async (client, interaction) => {
         await interaction.deferReply();
 
+
+        const chanmsg = await ChannelMessage.where({ messagetype: "cup-rankings" }).findOne()
+
+        var channel = await interaction.guild.channels.fetch(chanmsg.channelid)
+        
         const season = await Season.findOne();
     
         const ps = await Player.find();
@@ -87,9 +92,6 @@ module.exports = {
         }
 
 
-        const chanmsg = await ChannelMessage.where({ messagetype: "cup-rankings" }).findOne()
-
-        var channel = await interaction.guild.channels.fetch(chanmsg.channelid)
         let message
         try {
             message = await channel.messages.fetch(chanmsg.messageid)

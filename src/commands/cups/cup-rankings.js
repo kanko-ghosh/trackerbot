@@ -69,7 +69,10 @@ module.exports = {
 
             temp = ""
             for (var k = 0; k < res.length; k++) {
-                temp += `${res[k][1]}x\`${trophy}\`  ${res[k][2]}x\`${silverMedal}\`  ${res[k][3]}x\`${bronzeMedal}\`  \t\t<@${res[k][0]}>\n`
+                temp += res[k][1] == 0 ? "" : `${res[k][1]}x\`${trophy}\``
+                temp += res[k][2] == 0 ? "" : `${res[k][2]}x\`${silverMedal}\``
+                temp += res[k][3] == 0 ? "" : `${res[k][3]}x\`${bronzeMedal}\``
+                temp += `\t\t<@${res[k][0]}>\n`
             }
             if (temp != ""){
                 to_print += "---------------------\n";

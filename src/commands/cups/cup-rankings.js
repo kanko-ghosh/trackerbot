@@ -86,7 +86,6 @@ module.exports = {
                 .setTitle(tours[i])
                 .setDescription(to_print)
                 embedList.push(embed)
-                await channel.send({content: "Damage protection msg :/", embeds: [embed]})
             }
 
         }

@@ -53,7 +53,7 @@ module.exports = {
 
         to_print = ""
         for (var i = 0; i < res.length; i++) {
-            to_print += `${res[i][1]} <:TP:1147077791192457286>\t\t<@${res[i][0]}>\n`
+            to_print += `${res[i][1]} TP \t\t<@${res[i][0]}>\n`
             if (i == 29)
                 to_print += "--------------- TOP 30 ----------------\n"
         }

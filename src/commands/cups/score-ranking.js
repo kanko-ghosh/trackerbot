@@ -61,7 +61,7 @@ module.exports = {
             to_print = `Nothing!!`
         }
         to_print = `# Season ${season.season}\n---------------------\n\n` + to_print
-
+        console.log(to_print)
         const chanmsg = await ChannelMessage.where({ messagetype: "score-rankings" }).findOne()
 
         var channel = await interaction.guild.channels.fetch(chanmsg.channelid)
